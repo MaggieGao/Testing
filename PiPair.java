@@ -26,10 +26,10 @@ public class PiPair {
 		float confidence = (float)0.65;
 		
 		switch(args.length){
-			case 1: break;
-			case 3: 
-				support = Integer.parseInt(args[1]);
-				confidence = Float.parseFloat(args[2])/100;
+			case 0: break;
+			case 2: 
+				support = Integer.parseInt(args[0]);
+				confidence = Float.parseFloat(args[1])/100;
 				break;
 			default:
 				System.err.println("Error: Wrong arguments input.");
@@ -45,8 +45,9 @@ public class PiPair {
 
 	public static void readFile() throws IOException{
 		
-		Scanner scanner = new Scanner(File.separator + "graphoutput.txt");
-	
+		//Scanner scanner = new Scanner(File.separator + "graphoutput.txt");
+		Scanner scanner = new Scanner(System.in);
+		
 		String pattern_caller = "Call.*'(.*)'.*";
 		Pattern p_caller = Pattern.compile(pattern_caller);
 		Matcher m_caller = null;
@@ -167,7 +168,7 @@ public class PiPair {
 					HashSet<String> key_pair = entry_pair.getKey();
 					float confi = (float)value_pair / value_single;
 					
-					if(value_pair >= support && key_pair.contains(key_single) && confi > confidence && confi < 1){		
+					if(value_pair >= support && key_pair.contains(key_single) && confi >= confidence && confi <= 1){		
 						HashSet<String> single = null;
 						HashSet<String> pair = null;
 						single = pipair.get(key_s);  // not key_single, it is a String not HashSet
