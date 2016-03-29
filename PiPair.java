@@ -26,10 +26,10 @@ public class PiPair {
 		float confidence = (float)0.65;
 		
 		switch(args.length){
-			case 0: break;
-			case 2: 
-				support = Integer.parseInt(args[0]);
-				confidence = Float.parseFloat(args[1])/100;
+			case 1: break;
+			case 3: 
+				support = Integer.parseInt(args[1]);
+				confidence = Float.parseFloat(args[2])/100;
 				break;
 			default:
 				System.err.println("Error: Wrong arguments input.");
